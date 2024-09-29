@@ -13,9 +13,9 @@ public final class DAOFactory {
     private Connection conn;
     
     public DAOFactory(String prefix) {
-
+        
         DAOProperties properties = new DAOProperties(prefix);
-
+        
         this.url = properties.getProperty(PROPERTY_URL);
         this.username = properties.getProperty(PROPERTY_USERNAME);
         this.password = properties.getProperty(PROPERTY_PASSWORD);

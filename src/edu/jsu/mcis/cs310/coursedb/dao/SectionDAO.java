@@ -18,6 +18,7 @@ public class SectionDAO {
     public String find(int termid, String subjectid, String num) {
         
         String result = "[]";
+
         
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -28,8 +29,23 @@ public class SectionDAO {
             Connection conn = daoFactory.getConnection();
             
             if (conn.isValid(0)) {
-                
+                            
+                ps = conn.prepareStatement(QUERY_FIND);
                 // INSERT YOUR CODE HERE
+                ps.setInt(1, termid);
+                ps.setString(2, subjectid);
+                ps.setString(3, num);
+                
+                boolean hasresults = ps.execute();
+                
+                if ( hasresults ){
+                    rs = ps.getResultSet();
+                    result = DAOUtility.getResultSetAsJson(rs);
+                    //System.out.println(subjectid);
+                }                
+                
+                
+                
                 
             }
             
